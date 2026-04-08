@@ -1,0 +1,64 @@
+[
+  {
+  "hora": "10:00",
+  "cliente": "Juan",
+  "servicio": "Corte",
+  "estado": "Pendiente"
+  }
+  ,
+  {
+  "hora": "11:00",
+  "cliente": "Alex",
+  "servicio": "Corte",
+  "estado": "Terminado"
+  },
+  {
+  "hora": "11:00",
+  "cliente": "Alex",
+  "servicio": "Corte",
+  "estado": "Terminado"
+  },
+  {
+  "hora": "11:00",
+  "cliente": "Alex",
+  "servicio": "Corte",
+  "estado": "Terminado"
+  },
+  {
+  "hora": "11:00",
+  "cliente": "Alex",
+  "servicio": "Corte",
+  "estado": "Terminado"
+  },
+  {
+  "hora": "11:00",
+  "cliente": "Alex",
+  "servicio": "Corte",
+  "estado": "Terminado"
+  },
+  {
+  "hora": "11:00",
+  "cliente": "Alex",
+  "servicio": "Corte",
+  "estado": "Terminado"
+  },
+  {
+  "hora": "11:00",
+  "cliente": "Alex",
+  "servicio": "Corte",
+  "estado": "Terminado"
+  },
+  {
+  "hora": "11:00",
+  "cliente": "Alex",
+  "servicio": "Corte",
+  "estado": "Terminado"
+  },
+  {
+  "hora": "11:00",
+  "cliente": "Alex",
+  "servicio": "Corte",
+  "estado": "Terminado"
+  }
+
+]

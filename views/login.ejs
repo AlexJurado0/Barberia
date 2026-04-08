@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Peluquería</title>
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body style="background-color: #212529;">
+<div class="d-flex justify-content-center align-items-center vh-100" >
+  <div class="p-4 border " style="background-color: #080808; border-radius: 10%; shape-margin: 10%; box-shadow: 0 10px 25px rgba(255, 255, 255, 0.6);">
+    <h1 class="d-flex justify-content-center color-text">Iniciar session</h1>
+    <div class="d-flex justify-content-center" >
+      <form action="<%= url %>panelAdmin" method="post" > 
+        <div class="mb-3">
+          <i class="bi bi-person-fill color-text"></i>
+          <label for="user" class="form-label color-text">Usuario</label>
+          <input type="text" class="form-control" name="user" required >
+        </div>
+        <div class="mb-3">
+          <i class="bi bi-key-fill color-text"></i>
+          <label for="pass" class="form-label color-text">Contraseña</label>
+          <input type="password" class="form-control" name="pass" required>
+        </div>
+        <div class="d-flex justify-content-center">
+          <button type="submit" class="btn btn-dark w-50">Ingresar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
