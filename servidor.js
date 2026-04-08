@@ -4,7 +4,10 @@ const seguridad = require('./seguridad');
 const app = express();
 const port = process.env.PORT || 3000;
 
-const _url = "http://localhost:3000/";
+const _url =
+  process.env.NODE_ENV === "production"
+    ? "https://barberia-1-pl1t.onrender.com/"
+    : "http://localhost:3000/";
 
 app.set('view engine', 'ejs');
 
