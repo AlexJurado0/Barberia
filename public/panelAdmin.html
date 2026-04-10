@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="/style.css">
 </head>
 <body style="background-color: #212529;">
-  <div class="m-5">
+  <div class="container mt-5">
     <table class="table table-hover table-bordered text-center">
       <thead>
         <tr>
@@ -21,28 +21,10 @@
           <td class="color-text">accion</td>
         </tr>
       </thead>
-      <tbody>
-        <% turnos.forEach(turnos => { %>
-          <tr>
-            <th class="color-text"><%= turnos.hora %></th>
-            <th class="color-text"><%= turnos.cliente %></th>
-            <th class="color-text"><%= turnos.servicio %></th>
-            <td class="color-text">
-              <% if (turnos.estado === "Pendiente") { %>
-                <span class="badge bg-warning text-dark">Pendiente</span>
-              <% } else { %>
-                <span class="badge bg-success">Finalizado</span>
-              <% } %>
-            </td>
-            <td>
-              <button class="btn btn-success btn-sm">Atender</button>
-              <button class="btn btn-danger btn-sm">Eliminar</button>
-            </td>
-          </tr>
-        <% }) %>
-      </tbody>
+      <tbody id="body-tabla"></tbody>
     </table>
   </div>
   
+  <script src="script.js"></script>
 </body>
 </html>

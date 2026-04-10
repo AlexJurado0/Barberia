@@ -1,21 +1,17 @@
 const express = require('express');
+const fs = require('fs');
+const path = require('path');
 const modelo = require('./model');
 const seguridad = require('./seguridad');
 const app = express();
 const port = process.env.PORT || 3000;
 
-const _url =
-  process.env.NODE_ENV === "production"
-    ? "https://barberia-1-pl1t.onrender.com/"
-    : "http://localhost:3000/";
-
-app.set('view engine', 'ejs');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-  res.render('login', { url: _url });
+  res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
 
 app.post('/panelAdmin', (req, res) => {
@@ -24,11 +20,25 @@ app.post('/panelAdmin', (req, res) => {
   if(esValido) {
     const turnos = modelo.getTurnos();
     console.log("Usuario válido");
-    res.render('panelAdmin' , { url: _url, turnos: turnos });
+    res.sendFile(path.join(__dirname, 'public', 'panelAdmin.html'));
   } else {
     console.log("Usuario inválido");
     res.redirect('/');
   }
+});
+
+
+app.get("/api/turnos", (req, res) => {
+  const filePath = path.join(__dirname, "db", "turnos.json");
+
+  fs.readFile(filePath, "utf8", (err, data) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).json({ error: "No se pudo leer el archivo" });
+    }
+
+    res.json(JSON.parse(data));
+  });
 });
 
 app.listen(port, () => {

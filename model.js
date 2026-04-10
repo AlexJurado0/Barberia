@@ -1,9 +1,9 @@
 const fs = require('fs');
+const path = require('path');
 const { Usuario } = require('./clases');
-
 // Usuario
 const getUsuarios = () => {
-	const file = 'db/usuarios.json';
+	const file = path.join(__dirname, 'db', 'usuarios.json');
   const data = fs.readFileSync(file, 'utf8');
 	const usuariosData = JSON.parse(data);
   return usuariosData;
@@ -11,7 +11,7 @@ const getUsuarios = () => {
 
 //Turnos
 const getTurnos  = ()=>{
-  const file = 'db/turnos.json';
+  const file = path.join(__dirname, 'db', 'turnos.json');
   const data = fs.readFileSync(file, 'utf-8');
   const turnosData = JSON.parse(data);
   return turnosData;
@@ -19,7 +19,7 @@ const getTurnos  = ()=>{
 
 const setTurnos = (turno)=>{
   // Leer el archivo JSON existente
-  const file = 'db/turnos.json';
+  const file = path.join(__dirname, 'db', 'turnos.json');
   const turnos = getTurnos();
   
   // Agregar el nuevo turno al array de turnos
