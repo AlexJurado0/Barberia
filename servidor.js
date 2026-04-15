@@ -41,7 +41,19 @@ app.get("/api/turnos", (req, res) => {
   });
 });
 
+app.get("/api/usuarios", (req, res) => {
+  const filePath = path.join(__dirname, "db", "usuarios.json");
+
+  fs.readFile(filePath, "utf8", (err, data) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).json({ error: "No se pudo leer el archivo" });
+    }
+
+    res.json(JSON.parse(data));
+  });
+});
+
 app.listen(port, () => {
   console.log(`Servidor escuchando en http://localhost:${port}`);
-  console.log(modelo.getUsuarios());
 });

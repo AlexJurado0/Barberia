@@ -1,3 +1,47 @@
+body{
+  font-family: sans-serif;
+}
+
 .color-text {
   color: aliceblue;
 }
+
+.centra-elemento {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+.login-style{
+  height: 320px;
+  width: 300px;
+  background:  #080808; 
+  border-radius: 10%; 
+  box-shadow: 0 7px 30px rgba(255, 255, 255, 0.6);
+  outline: 2px solid rgba(255, 255, 255, 0.6);
+  transition: 0.3s;
+}
+
+.login-style:hover{ 
+  transition: 0.3s; 
+  box-shadow: 0 7px 50px rgba(255, 255, 255, 0.6); 
+}
+.label{
+  height: 30px;
+}
+.input-form{
+  width: 100%;
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  padding: 10px;
+
+}
+.button{
+  height: 40px;
+  width: 100px;
+  color: aliceblue;
+  background-color: #212529;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
+}
+
