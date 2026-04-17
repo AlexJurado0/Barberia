@@ -57,3 +57,8 @@ app.get("/api/usuarios", (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor escuchando en http://localhost:${port}`);
 });
+
+
+app.get('/ping', (req, res) => {
+  res.status(200).send('ok');
+});
