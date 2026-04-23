@@ -11,15 +11,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 </head>
 
-<body class="tamaño color-text" style="background-color: #212529; ">
+<body class="tamaño color-text body-login" style="background-color: #212529; " >
 <div class="centra-elemento " style="height: 100vh;" >
-  <div class="login-style centra-elemento">
-    <div class="centra-elemento" >
-      <h1 class="centra-elemento">Iniciar session</h1>
+  <div class="login-style">
+    <h1 class="centra-elemento" style="font-size: 40px">Iniciar session</h1>
       <form action="/panelAdmin" method="post"> 
         <div class="centra-elemento">
           <label for="user" class="label "> <i class="bi bi-person-fill "></i> Usuario</label>
-          <input type="text" class="input-form" name="user" required style="margin-bottom: 10px;">
+          <input type="text" class="input-form" name="user" required style="margin-bottom: 10px; display: inline;">
         </div>
         <div class="centra-elemento">
           <label for="pass" class="label "><i class="bi bi-key-fill "></i> Contraseña</label>
@@ -29,7 +28,6 @@
           <button type="submit" class="button">Ingresar</button>
         </div>
       </form>
-    </div>
   </div>
 </div>
 </body>

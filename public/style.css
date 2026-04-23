@@ -1,6 +1,15 @@
-body{
+body {
   font-family: sans-serif;
   margin: 0;
+}
+
+.body-login {
+  background-image: url("OAK3ZT0.jpg");
+  background-size: cover;
+  /* ajusta la imagen a toda la pantalla */
+  background-position: center;
+  /* centra la imagen */
+  background-repeat: no-repeat;
 }
 
 .color-text {
@@ -13,44 +22,222 @@ body{
   align-items: center;
 }
 
-.login-style{
-  height: 320px;
-  width: 300px;
-  background:  #080808; 
-  border-radius: 10%; 
-  box-shadow: 0 7px 30px rgba(255, 255, 255, 0.6);
-  border: 2px solid rgba(255, 255, 255, 0.6);
-  transition: 0.3s;
+.login-style {
+  height: auto;
+  width: 400px;
+  background: #000000;
   box-sizing: border-box;
+
+  text-overflow: ellipsis;
+  transition: 0.3s;
+  box-shadow: 0 7px 30px rgba(255, 255, 255, 0.6);
+  opacity: 70%;
 }
 
-.login-style:hover{ 
-  transition: 0.3s; 
-  box-shadow: 0 7px 50px rgba(255, 255, 255, 0.6); 
+.login-style:hover {
+  transition: 0.3s;
+  box-shadow: 0 7px 50px rgba(255, 255, 255, 0.6);
 }
-.label{
+
+.label {
   height: 30px;
 }
-.input-form{
-  width: 100%;
-  border-radius: 10px;
+
+.input-form {
+  width: 80%;
   border: 2px solid rgba(255, 255, 255, 0.6);
   padding: 10px;
-
+  font-size: 20px;
 }
-.button{
-  height: 40px;
-  width: 100px;
+
+.button {
+  font-size: 20px;
+  height: 50px;
+  width: 130px;
   color: aliceblue;
   background-color: #212529;
   border: 2px solid rgba(255, 255, 255, 0.6);
-  border-radius: 10px;
+  margin-bottom: 40px;
+  margin-top: 20px;
 }
 
-.borde-table{
-  outline: 2px solid rgba(255, 255, 255, 0.6); margin: 30px;
+.borde-table {
+  outline: 2px solid rgba(255, 255, 255, 0.6);
+  margin: 30px;
 }
 
-.borde-elementos{
+.borde-elementos {
   border-right: solid rgba(255, 255, 255, 0.6)
+}
+
+
+
+.conteiner {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border: 2px solid black;
+  width: 500px;
+  height: 400px;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  gap: 16px;
+  box-sizing: border-box;
+}
+
+.items {
+  background: #09f;
+  border: 1px solid;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+
+.items:first-child {
+  background-color: red;
+  height: 100px;
+}
+
+.items:nth-child(2) {
+  background-color: green;
+  height: 50px;
+}
+
+.items:last-child {
+  background-color: yellow;
+  height: 30px;
+}
+
+.conteiner1 {
+  background: black;
+  height: 1000px;
+  width: auto;
+  position: relative;
+}
+
+.whatsApp {
+  width: 120px;
+  height: 100px;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  margin: 40px;
+  border-radius: 50px;
+  z-index: 10;
+}
+
+
+
+
+
+/* Panel Administrador  */
+
+.body-Admin {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #212529;
+  color: white;
+}
+
+/* barra Superior */
+.barra-superior {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  padding: 15px 20px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #2c3034;
+}
+
+.barra-superior h2 {
+  padding: 0;
+}
+
+.salir {
+  background: #dc3545;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+}
+
+/* filtrar  */
+
+.filtrar-estados {
+  display: flex;
+  gap: 10px;
+  padding: 15px;
+}
+
+.filtrar-estados button {
+  background: #343a40;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 15px;
+  cursor: pointer;
+}
+
+.filtrar-estados button:hover {
+  background: #495057;
+}
+
+/* Turnos */
+
+.turnos {
+  background: #2c3034;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 12px;
+  margin: 15px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+.hora {
+  font-size: 20px;
+  color: #257afa;
+}
+
+.estado {
+  margin-top: 5px;
+  font-size: 15px;
+}
+
+.pendiente {
+  color: #ffc107;
+}
+
+.confirmado {
+  color: #28a745;
+}
+
+.cancelado {
+  color: #dc3545;
+}
+
+.accion {
+  margin-top: 10px;
+}
+
+.accion button {
+  border: none;
+  border-radius: 20px;
+  margin-right: 5px;
+  padding: 8px 15px;
+  cursor: pointer;
+}
+
+.confirmar {
+  background: #28a745;
+  color: white;
+}
+
+.cancelar {
+  background: #dc3545;
+  color: white;
 }

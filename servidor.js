@@ -28,6 +28,10 @@ app.post('/panelAdmin', (req, res) => {
 });
 
 
+app.get('/panelCliente', (req, res) =>{
+  res.sendFile(path.join(__dirname, 'public', 'panelCliente.html'));
+});
+
 app.get("/api/turnos", (req, res) => {
   const filePath = path.join(__dirname, "db", "turnos.json");
 
