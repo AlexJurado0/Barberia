@@ -16,12 +16,12 @@ body {
   color: aliceblue;
 }
 
-.centra-elemento {
-  display: grid;
-  justify-items: center;
-  align-items: center;
+.centra-elemento{
+  display: flex;
+  justify-content: center;
+  align-items: center;    
+  flex-direction: column;  
 }
-
 .login-style {
   height: auto;
   width: 400px;
@@ -74,7 +74,7 @@ body {
 
 .conteiner {
   display: flex;
-  flex-direction: row;
+
   flex-wrap: wrap;
   border: 2px solid black;
   width: 500px;
@@ -119,14 +119,23 @@ body {
 }
 
 .whatsApp {
-  width: 120px;
-  height: 100px;
+  width: 60px;
+  height: 60px;
   position: fixed;
-  right: 0;
-  bottom: 0;
-  margin: 40px;
-  border-radius: 50px;
+  right: 20px;
+  bottom: 20px;
+  border-radius: 200px;
   z-index: 10;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.whatsApp:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
 }
 
 
