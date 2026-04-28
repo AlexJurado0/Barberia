@@ -66,6 +66,12 @@ const filtrarTurnos = (estado) => {
   return turnosfiltrados;
 };
 
+const filtrarTurnosFecha = (fecha) => {
+  const file = path.join(__dirname, 'db', 'turnos.json');
+  const turnos = getTurnos();
+  const turnosfiltrados = turnos.filter(turno => turno.date === fecha);
+  return turnosfiltrados;
+}
 
 // panelCliente
 
@@ -73,4 +79,4 @@ const solicitarTurno = (turno) =>{
   setTurnos(turno);
 }
 
-module.exports = { getUsuarios, getTurnos, setTurnos, confirmarTurno, cancelarTurno, filtrarTurnos, solicitarTurno };
+module.exports = { getUsuarios, getTurnos, setTurnos, confirmarTurno, cancelarTurno, filtrarTurnos, filtrarTurnosFecha, solicitarTurno };

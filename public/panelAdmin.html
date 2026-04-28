@@ -11,26 +11,6 @@
 
 <body class="body-Admin">
 
-<style>
-  input[type="date"] {
-  background: #343a40;
-  color: white;
-  border: none;
-  border-radius: 20px;
-  padding: 8px 15px;
-  cursor: pointer;
-  outline: none;
-  margin-left: 15px;
-}
-/* Icono del calendario (Chrome / Edge) */
-  input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(1);
-    cursor: pointer;
-  }
-
-</style>
-
-
 <!-- Barra superior -->
   <div class="barra-superior">
     <h2>💈 Peluqueria</h2>
@@ -43,8 +23,9 @@
     <button id="pendientes">Pendientes</button>
     <button id="cancelados">Cancelados</button>
   </div>
-
-  <input type="date">
+  
+  <input type="date" id="filtrar-fecha" class="filtro-fecha">
+  <button id="fecha" class="filtrar-fecha">Filtrar</button>
   <!-- Turnos -->
   <div id="container-turnos">
     

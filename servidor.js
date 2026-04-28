@@ -67,6 +67,13 @@ app.get("/api/turnos/filtrar/:estado", (req, res) => {
   console.log(turnos)
 });
 
+app.get("/api/turnos/filtrar/fecha/:fecha", (req, res) => {
+  const fecha = req.params.fecha;
+  console.log("Filtrando turnos por fecha:", fecha);
+  const turnos = modelo.filtrarTurnosFecha(fecha);
+  res.status(200).json(turnos);
+  console.log(turnos)
+});
 // Usuarios
 app.get("/api/usuarios", (req, res) => {
   const filePath = path.join(__dirname, "db", "usuarios.json");
@@ -96,6 +103,8 @@ app.post("/api/turnos/solicitar", (req, res) => {
   modelo.solicitarTurno(turno);
   res.status(200).json({ message: "Turno solicitado" });
 });
+
+
 
 app.listen(port, () => {
   console.log(`Servidor escuchando en http://localhost:${port}`);

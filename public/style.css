@@ -197,6 +197,38 @@ body {
   background: #495057;
 }
 
+.filtrar-fecha {
+  background: #343a40;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 15px;
+  cursor: pointer;
+}
+
+.filtrar-fecha button:hover {
+  background: #495057;
+}
+
+.filtro-fecha {
+  background: #343a40;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 15px;
+  cursor: pointer;
+  outline: none;
+  margin-left: 15px;
+  
+}
+
+
+/* Icono del calendario (Chrome / Edge) */
+  .filtro-fecha::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+  }
+
 /* Turnos */
 
 .turnos {
