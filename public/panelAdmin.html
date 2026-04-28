@@ -8,55 +8,47 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="/style.css">
 </head>
+
 <body class="body-Admin">
+
+<style>
+  input[type="date"] {
+  background: #343a40;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 15px;
+  cursor: pointer;
+  outline: none;
+  margin-left: 15px;
+}
+/* Icono del calendario (Chrome / Edge) */
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+  }
+
+</style>
+
+
 <!-- Barra superior -->
   <div class="barra-superior">
     <h2>💈 Peluqueria</h2>
-    <button class="salir">salir</button>
+    <button class="salir" id="salir">salir</button>
   </div>
   <!-- Filtrar Estado -->
   <div class="filtrar-estados">
-    <button>Todos</button>
-    <button>Confirmados</button>
-    <button>Pendientes</button>
+    <button id="todos">Todos</button>
+    <button id="confirmados">Confirmados</button>
+    <button id="pendientes">Pendientes</button>
+    <button id="cancelados">Cancelados</button>
   </div>
+
+  <input type="date">
   <!-- Turnos -->
-  <div class="turnos">
-    <div class="hora">11:00</div>
-    <h3>Alex Jurado</h3>
-    <p>Corte de pelo</p>
-    <div class="estado pendiente">🟡 Pendiente</div>
-    <div class="accion">
-      <button class="confirmar">✔ Confirmar</button>
-      <button class="cancelar">❌ Cancelar</button>
-    </div>
+  <div id="container-turnos">
     
   </div>
-
-  <div class="turnos">
-    <div class="hora">11:00</div>
-    <h3>Alex Jurado</h3>
-    <p>Corte de pelo</p>
-    <div class="estado confirmado">🟢 Confirmado</div>
-    <div class="accion">
-      <button class="confirmar">✔ Confirmar</button>
-      <button class="cancelar">❌ Cancelar</button>
-    </div>
-    
-  </div>
-
-  <div class="turnos">
-    <div class="hora">11:00</div>
-    <h3>Alex Jurado</h3>
-    <p>Corte de pelo</p>
-    <div class="estado cancelado">🔴 Cancelado</div>
-    <div class="accion">
-      <button class="confirmar">✔ Confirmar</button>
-      <button class="cancelar">❌ Cancelar</button>
-    </div>
-    
-  </div>
-
-  <script src="script.js"></script>
+  <script src="js/panelAdmin.js"></script>
 </body>
 </html>

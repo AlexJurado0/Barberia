@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<style>
+  .conteiner{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 50px 1fr 50px;
+    min-height: 100vh;
+    grid-template-areas: 
+      "cabeza cabeza cabeza"
+      "contenido contenido barraLateral"
+      "pie pie pie"
+    ;
+    justify-items: normal;
+    align-items: center;
+  }
+   @media (width > 720px){
+    .conteiner{
+      grid-template-areas: 
+      "cabeza cabeza cabeza"
+      "barraLateral contenido contenido"
+      "pie pie pie"
+    }
+   }
+  .conteiner header{
+    background-color: red;
+    grid-area: cabeza;
+    justify-items: center;
+    align-items: center;
+  }
+  .conteiner sidebar{
+    background-color: aqua;
+    grid-area: barraLateral;
+  }
+  .conteiner main{
+    background-color: blue;
+    grid-area: contenido;
+  }
+  .conteiner footer{
+    background-color: yellow;
+    grid-area: pie;
+  }
+
+  body{
+    margin: 0;
+  }
+</style>
+<body>
+  <div class="conteiner">
+    <header>head</header>
+    <sidebar>sidebar</sidebar>
+    <main>main</main>
+    <footer>footer</footer>
+  </div>
+</body>
+</html>

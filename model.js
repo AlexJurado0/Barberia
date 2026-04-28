@@ -28,4 +28,49 @@ const setTurnos = (turno)=>{
   // Guardar el nuevo turno en el archivo JSON
   fs.writeFileSync(file, JSON.stringify(turnos, null, 2), 'utf-8');
 }
-module.exports = { getUsuarios, getTurnos, setTurnos };
+
+const confirmarTurno = (cliente) => {
+  const file = path.join(__dirname, 'db', 'turnos.json');
+  let turnos = getTurnos();
+
+  console.log(cliente)
+  turnos = turnos.map(turnos => {
+    if (turnos.cliente === cliente) {
+      turnos.estado = 'Confirmado';
+    }
+    return turnos;
+  });
+
+  fs.writeFileSync(file, JSON.stringify(turnos, null, 2), 'utf-8');
+}
+
+
+const cancelarTurno = (cliente) => {
+  const file = path.join(__dirname, 'db', 'turnos.json');
+  let turnos = getTurnos();
+
+  turnos = turnos.map(turnos => {
+    if (turnos.cliente === cliente) {
+      turnos.estado = 'Cancelado';
+    }
+    return turnos;
+  });
+
+  fs.writeFileSync(file, JSON.stringify(turnos, null, 2), 'utf-8');
+}
+
+const filtrarTurnos = (estado) => {
+  const file = path.join(__dirname, 'db', 'turnos.json');
+  const turnos = getTurnos();
+  const turnosfiltrados = turnos.filter(turno => turno.estado === estado);
+  return turnosfiltrados;
+};
+
+
+// panelCliente
+
+const solicitarTurno = (turno) =>{
+  setTurnos(turno);
+}
+
+module.exports = { getUsuarios, getTurnos, setTurnos, confirmarTurno, cancelarTurno, filtrarTurnos, solicitarTurno };

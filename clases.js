@@ -12,15 +12,17 @@ class Usuario {
 }
 
 class Turno {
-  constructor(nombre, telefono, servicio, fecha) {
+  constructor(fecha, hora, nombre, telefono, servicio, estado) {
+    this.fecha = fecha;
+    this.hora = hora;
     this.nombre = nombre;
     this.telefono = telefono;
-    this.servicio = servicio;
-    this.fecha = fecha;
+    this.servicio = servicio;  
+    this.estado = estado;
   }
 
   MostrarInfo() {
-    console.log("Nombre: " + this.nombre + " - Teléfono: " + this.telefono + " - Servicio: " + this.servicio + " - Fecha: " + this.fecha);
+    console.log("fecha: " + this.fecha + " - Hora: " + this.hora + " - Nombre: " + this.nombre + " - Teléfono: " + this.telefono + " - Servicio: " + this.servicio + " - Estado: " + this.estado);
   }
 }
 

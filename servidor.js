@@ -9,6 +9,7 @@ const port = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
+app.use(express.json())
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'login.html'));
@@ -32,6 +33,8 @@ app.get('/panelCliente', (req, res) =>{
   res.sendFile(path.join(__dirname, 'public', 'panelCliente.html'));
 });
 
+
+//Turnos
 app.get("/api/turnos", (req, res) => {
   const filePath = path.join(__dirname, "db", "turnos.json");
 
@@ -45,6 +48,26 @@ app.get("/api/turnos", (req, res) => {
   });
 });
 
+app.post("/api/turnos/confirmar/:cliente", (req, res) => {
+  const turnoId = req.params.cliente;
+  const turnos = modelo.confirmarTurno(turnoId);
+  res.status(200).json({ message: "Turno confirmado" });
+})
+
+app.post("/api/turnos/cancelar/:cliente", (req, res) => {
+  const turnoId = req.params.cliente;
+  const turnos = modelo.cancelarTurno(turnoId);
+  res.status(200).json({ message: "Turno cancelado" });
+})
+
+app.get("/api/turnos/filtrar/:estado", (req, res) => {
+  const estado = req.params.estado;
+  const turnos = modelo.filtrarTurnos(estado);
+  res.status(200).json(turnos);
+  console.log(turnos)
+});
+
+// Usuarios
 app.get("/api/usuarios", (req, res) => {
   const filePath = path.join(__dirname, "db", "usuarios.json");
 
@@ -56,6 +79,22 @@ app.get("/api/usuarios", (req, res) => {
 
     res.json(JSON.parse(data));
   });
+});
+
+// Barra Navegacion 
+app.get("/api/logout/salir", (req,res) => {
+  console.log("Cerrando sesión");
+  res.sendFile(path.join(__dirname, 'public', 'login.html'));
+})
+
+
+// Panel Cliente
+
+app.post("/api/turnos/solicitar", (req, res) => {
+  const turno = req.body;
+  console.log("Turno recibido en el servidor:", turno);
+  modelo.solicitarTurno(turno);
+  res.status(200).json({ message: "Turno solicitado" });
 });
 
 app.listen(port, () => {
