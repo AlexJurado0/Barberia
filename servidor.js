@@ -8,7 +8,7 @@ const port = process.env.PORT || 3000;
 
 
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json())
 
 app.get('/', (req, res) => {
@@ -64,7 +64,6 @@ app.get("/api/turnos/filtrar/:estado", (req, res) => {
   const estado = req.params.estado;
   const turnos = modelo.filtrarTurnos(estado);
   res.status(200).json(turnos);
-  console.log(turnos)
 });
 
 app.get("/api/turnos/filtrar/fecha/:fecha", (req, res) => {
@@ -72,7 +71,6 @@ app.get("/api/turnos/filtrar/fecha/:fecha", (req, res) => {
   console.log("Filtrando turnos por fecha:", fecha);
   const turnos = modelo.filtrarTurnosFecha(fecha);
   res.status(200).json(turnos);
-  console.log(turnos)
 });
 // Usuarios
 app.get("/api/usuarios", (req, res) => {
@@ -86,6 +84,10 @@ app.get("/api/usuarios", (req, res) => {
 
     res.json(JSON.parse(data));
   });
+});
+
+app.get('/panelAdmin/gestionTurnos', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'gestionTurnos.html'));
 });
 
 // Barra Navegacion 
@@ -111,6 +113,3 @@ app.listen(port, () => {
 });
 
 
-app.get('/ping', (req, res) => {
-  res.status(200).send('ok');
-});

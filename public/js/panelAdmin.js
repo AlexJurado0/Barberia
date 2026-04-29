@@ -55,12 +55,7 @@ const mostrarTurnos = (turnos) => {
           turnosElement.querySelector('.estado').classList.add('confirmado');
         }
       }
-
-
     }
-
-
-
   })
 
   btnCancelar.addEventListener('click', async () => {
@@ -159,6 +154,12 @@ const salir = () => {
     }
   });
 }
+
+const btnGestionarTurnos = document.getElementById('gestion-de-turnos');
+
+btnGestionarTurnos.addEventListener('click', () => {
+  window.location.href = '/panelAdmin/gestionTurnos';
+});
 
 filtrarPorEstados();
 filtrarFecha();
