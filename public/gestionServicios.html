@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+
+<body class="body-cliente" s>
+
+  <div class="barra-superior">
+    <h2 id="Inicio" onclick="window.location.href = '/panelAdmin'">💈 Peluqueria</h2>
+    <button type="submit" class="filtrar-fecha" id="gestion-de-turnos">Gestión de turnos</button>
+    <button class="salir" id="salir">salir</button>
+  </div>
+
+  <div class="centra-elemento" style="margin-top: 100px;">
+    <div class="divTurnos">
+      <h2>Gestion de Servicios</h2>
+      <label for="servicio">Sevicio</label>
+      <input type="text" id="servicio" required>
+      <label for="precio">Precio</label>
+      <input type="text" id="precio" required >
+      <button class="btn-solicitar-turno" style="margin: 10px 0px 40px 0px;" id="guardar-servicio">Guardar</button>
+    </div>
+
+    <div>
+      <h2>Servicios disponibles</h2>
+    </div>
+
+    <div class="tabla-servicios" id="tabla-servicios">
+      <h3 class="tabla-header">Servicio</h3>
+      <h3 class="tabla-header">Precio</h3>
+      <h3 class="tabla-header">Acción</h3>
+
+
+    </div>
+  </div>
+
+  <script src="/js/gestionServicios.js"></script>
+</body>
+
+</html>

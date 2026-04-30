@@ -127,7 +127,7 @@ const filtrarFecha = () => {
     } else {
       alert("Por favor, ingresa una fecha para filtrar.");
     }
-});
+  });
 }
 
 const obtenerFechaHoy = () => {
@@ -165,3 +165,4 @@ filtrarPorEstados();
 filtrarFecha();
 salir();
 window.onload = cargarTurnosHoy;
+

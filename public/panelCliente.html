@@ -12,23 +12,15 @@
   <div class="centra-elemento" style="height: 100vh;">
     <div class="divTurnos">
       <h2>Turnos disponibles</h2>
+
+
+
       <label for="date">Día</label>
-      <input type="date" id="date">
-      <label for="hora">Hora</label>
-      <select name="hora" id="hora">
-        <option value="09:00">09:00</option>
-        <option value="09:30">09:30</option>
-        <option value="10:00">10:00</option>
-        <option value="10:30">10:30</option>
-        <option value="11:00">11:00</option>
-        <option value="11:30">11:30</option>
-        <option value="12:00">12:00</option>
-        <option value="12:30">12:30</option>
+      <select name="date" id="date">
+        
       </select>
-      <label for="nombre">Nombre y Apellido</label>
-      <input type="text" id="nombre">
-      <label for="telefono">Telefono</label>
-      <input type="text" id="telefono">
+      <!-- <input type="date" id="date"> -->
+
       <label for="servicio">Servicio</label>
       <select name="" id="servicio">
         <option value="Corte de pelo (10000$)">Corte de pelo (10000$)</option>
@@ -36,10 +28,20 @@
         <option value="Teñir el pelo (30000$)">Teñir el pelo (30000$)</option>
       </select>
 
+      <label for="horarios">Hora</label>
+      <select name="hora" id="horarios">
+      </select>
+
+      <label for="nombre">Nombre y Apellido</label>
+      <input type="text" id="nombre">
+
+      <label for="telefono">Telefono</label>
+      <input type="text" id="telefono">
+
       <button class="btn-solicitar-turno">Solicitar turno</button>
       <p style="font-size: 14px; padding: 0px 0px 10px 25px; opacity: 70%;" class="centra-elemento">
         Aclaración Luego de solicitar el corte, comunicarse por WhatsApp con el responsable para abonar el servicio.
-        Hacerlo con al menos 24 horasd e anticipación.
+        Hacerlo con al menos 2 horas de anticipación.
       </p>
     </div>
   </div>

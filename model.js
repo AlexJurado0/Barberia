@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { Usuario } = require('./clases');
+const { get } = require('http');
 // Usuario
 const getUsuarios = () => {
 	const file = path.join(__dirname, 'db', 'usuarios.json');
@@ -73,10 +74,58 @@ const filtrarTurnosFecha = (fecha) => {
   return turnosfiltrados;
 }
 
+const getHorariosDisponibles = () => {
+  const file = path.join(__dirname, 'db', 'horarios.json');
+  const data = fs.readFileSync(file, 'utf-8');
+  
+  return JSON.parse(data);
+  
+};
+
+const horarioFechaDate = (date) => {
+  const file = path.join(__dirname, 'db', 'horarios.json');
+  const data = fs.readFileSync(file, 'utf-8');
+  const horarios = JSON.parse(data);
+
+  const horariosFiltrados = horarios.filter(horario => horario.date === date);
+
+  return horariosFiltrados;
+  
+};
+
+const guardarHorariosDisponibles = (date, inicio, fin) => {
+  const file = path.join(__dirname, 'db', 'horarios.json');
+
+  let horarios = getHorariosDisponibles();
+
+  horarios.push({ date, inicio, fin });
+
+  fs.writeFileSync(file, JSON.stringify(horarios, null, 2), 'utf-8');
+};
 // panelCliente
 
 const solicitarTurno = (turno) =>{
   setTurnos(turno);
 }
 
-module.exports = { getUsuarios, getTurnos, setTurnos, confirmarTurno, cancelarTurno, filtrarTurnos, filtrarTurnosFecha, solicitarTurno };
+
+const getTurnosDisponibles = (date) => {
+  const turnos = getTurnos();
+  return turnos.filter(turno => turno.date === date);
+};
+
+
+const guardarServicio = (servicio, precio) => {
+  const file = path.join(__dirname, 'db', 'servicios.json');
+  let servicios = getServicios();
+  servicios.push({ servicio, precio });
+  fs.writeFileSync(file, JSON.stringify(servicios, null, 2), 'utf-8');
+}
+
+const getServicios = () => {
+  const file = path.join(__dirname, 'db', 'servicios.json');
+  const data = fs.readFileSync(file, 'utf-8');
+  return JSON.parse(data);
+}
+
+module.exports = { getUsuarios, getTurnos, setTurnos, confirmarTurno, cancelarTurno, filtrarTurnos, filtrarTurnosFecha, solicitarTurno, guardarHorariosDisponibles, getHorariosDisponibles, horarioFechaDate, getTurnosDisponibles, guardarServicio, getServicios };

@@ -4,7 +4,7 @@ body {
 }
 
 .body-login {
-  background-image: url("img/OAK3ZT0.jpg");
+  background-image: url("/img/OAK3ZT0.jpg");
   background-size: cover;
   /* ajusta la imagen a toda la pantalla */
   background-position: center;
@@ -339,4 +339,54 @@ body {
   color: white;
   font-size: 15px;
   cursor: pointer;
+}
+
+
+
+/* Servicios */
+
+
+.tabla-servicios {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  background-color: #2c3034;
+  border-radius: 12px;
+  padding: 15px;
+  width: 400px;
+  color: white;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  align-items: center;
+  text-align: center;
+}
+
+.tabla-header {
+  margin: 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #444;
+}
+
+.tabla-item {
+  margin: 0;
+  padding: 10px 0;
+}
+
+.precio {
+  color: #00d084;
+  font-weight: bold;
+}
+
+.btn-eliminar {
+  background-color: #dc3545;
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-eliminar:hover {
+  background-color: #b52a37;
 }
