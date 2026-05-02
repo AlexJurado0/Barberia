@@ -12,8 +12,9 @@
 <body class="body-cliente" s>
 
   <div class="barra-superior">
-    <h2 id="Inicio" onclick="window.location.href = '/panelAdmin'">💈 Peluqueria</h2>
-    <button type="submit" class="filtrar-fecha" id="gestion-de-turnos">Gestión de turnos</button>
+    <h2 class="inicio" onclick="window.location.href = '/panelAdmin';">💈 Peluqueria</h2>
+    <button type="submit" class="filtrar-fecha" id="gestion-de-turnos">Gestión de Turnos</button> 
+    <button type="submit" class="filtrar-fecha" id="gestion-de-servicios">Gestión de Servicios</button> 
     <button class="salir" id="salir">salir</button>
   </div>
 
@@ -31,16 +32,17 @@
       <h2>Servicios disponibles</h2>
     </div>
 
-    <div class="tabla-servicios" id="tabla-servicios">
-      <h3 class="tabla-header">Servicio</h3>
-      <h3 class="tabla-header">Precio</h3>
-      <h3 class="tabla-header">Acción</h3>
+<style>
+  
+</style>
 
+    <div class="tabla-servicios" id="tabla-servicios">
 
     </div>
   </div>
 
   <script src="/js/gestionServicios.js"></script>
+  <script src="/js/enrutador.js"></script>
 </body>
 
 </html>

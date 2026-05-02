@@ -53,7 +53,7 @@ app.post("/api/panelAdmin/gestionTurnos/horarios", (req, res) => {
 });
 
 
-app.get('/panelAdmin/gestionServcios', (req, res) => {
+app.get('/panelAdmin/gestionServicios', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'gestionServicios.html'));
 });
 

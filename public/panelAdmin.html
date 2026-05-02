@@ -13,9 +13,9 @@
 
 <!-- Barra superior -->
   <div class="barra-superior">
-    <h2>💈 Peluqueria</h2>
+    <h2 class="inicio" onclick="window.location.href = '/panelAdmin';">💈 Peluqueria</h2>
     <button type="submit" class="filtrar-fecha" id="gestion-de-turnos">Gestión de Turnos</button> 
-    <button type="submit" class="filtrar-fecha" id="gestion-de-turnos">Gestión de Servicios</button> 
+    <button type="submit" class="filtrar-fecha" id="gestion-de-servicios">Gestión de Servicios</button> 
     <button class="salir" id="salir">salir</button>
   </div>
   <!-- Filtrar Estado -->
@@ -32,6 +32,7 @@
   <div id="container-turnos">
     
   </div>
-  <script src="js/panelAdmin.js"></script>
+  <script src="/js/panelAdmin.js"></script>
+  <script src="/js/enrutador.js"></script>
 </body>
 </html>

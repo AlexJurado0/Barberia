@@ -38,14 +38,22 @@ const mostrarServicios = async () => {
   const conteinerSevicios = document.getElementById('tabla-servicios');
   const respuesta = await fetch('/api/servicios/gestionServcios/getServicios');
   const servicios = await respuesta.json();
-  let html = ` <h3 class="tabla-header">Servicio</h3>
+  let html = ` 
+    <div class="tabla-rows">
+      <h3 class="tabla-header">Servicio</h3>
       <h3 class="tabla-header">Precio</h3>
-      <h3 class="tabla-header">Acción</h3>`;
+      <h3 class="tabla-header">Acción</h3>
+    </div>
+      `
+      
+      ;
   servicios.forEach(servicio => {
     html += `
+      <div class="tabla-rows">
       <p class="tabla-item" value="${servicio.servicio}">${servicio.servicio}</p>
       <p class="tabla-item precio" value="${servicio.precio}">${servicio.precio}$</p>
-      <button class="btn-eliminar">Eliminar</button>
+      <button class="btn-eliminar" value="${servicio.servicio}">Eliminar</button>
+      </div>
     `
   });
 
