@@ -368,7 +368,7 @@ body {
 
 .tabla-rows {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
   white-space: normal;
   word-break: break-word;
   overflow-wrap: break-word;

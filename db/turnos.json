@@ -1606,5 +1606,13 @@
     "telefono": "2612000004",
     "servicio": "Lavado (3000$)",
     "estado": "Confirmado"
+  },
+  {
+    "date": "2026-04-30",
+    "hora": "10:00",
+    "nombre": "Alex",
+    "telefono": "123123123",
+    "servicio": "30",
+    "estado": "Pendiente"
   }
 ]

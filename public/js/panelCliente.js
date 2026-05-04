@@ -35,7 +35,7 @@ const SolicitarTurno = () => {
 }
 
 
-function generarSlots(inicio, fin, intervaloMin = 30) {
+function generarSlots(inicio, fin, duracion) {
   const slots = [];
 
   let [h, m] = inicio.split(":").map(Number);
@@ -52,50 +52,57 @@ function generarSlots(inicio, fin, intervaloMin = 30) {
       `${horas.toString().padStart(2, "0")}:${minutos.toString().padStart(2, "0")}`
     );
 
-    actual += intervaloMin;
+    actual += duracion;
   }
 
   return slots;
 }
 
 
+const date = document.getElementById("date");
+const servicio = document.getElementById("servicio")
+
 const mostrarHoraTurnos = async () => {
-  const date = document.getElementById("date");
   const horarios = document.getElementById("horarios");
+  console.log("Fecha seleccionada:", date.value);
+  const response = await fetch(`/api/panelCliente/turnos/${date.value}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
 
-  date.addEventListener("change", async () => {
-    console.log("Fecha seleccionada:", date.value);
-    const response = await fetch(`/api/panelCliente/turnos/${date.value}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
+  const data = await response.json();
+  console.log("Datos recibidos para la fecha:", date.value, data);
+  const slotsSet = new Set();
+  data.forEach(horario => {
+    const slots = generarSlots(horario.inicio, horario.fin, parseInt(servicio.value));
+    slots.forEach(slot => slotsSet.add(slot));
+  });
 
-    
+  const slotsOrdenados = Array.from(slotsSet).sort();
 
-    const data = await response.json();
-    console.log("Datos recibidos para la fecha:", date.value, data);
-    const slotsSet = new Set();
-    data.forEach(horario => {
-      const slots = generarSlots(horario.inicio, horario.fin);
-      slots.forEach(slot => slotsSet.add(slot));
-    });
-    
-    const slotsOrdenados = Array.from(slotsSet).sort();
+  let html = "";
 
-    let html = "";
-
-    slotsOrdenados.forEach(slot => {
-      html += `<option value="${slot}">${slot}</option>`;
-    });
-    horarios.innerHTML = html;
-    console.log("Turnos disponibles para la fecha:", date.value, data);
-  })
-
+  slotsOrdenados.forEach(slot => {
+    html += `<option value="${slot}">${slot}</option>`;
+  });
+  horarios.innerHTML = html;
+  console.log("Turnos disponibles para la fecha:", date.value, data);
 }
 
-const mostrarFechaTurnos = async() => {
+// 🔥 eventos
+date.addEventListener("change", mostrarHoraTurnos);
+servicio.addEventListener("change", mostrarHoraTurnos);
+
+document.addEventListener("DOMContentLoaded", async () => {
+  await mostrarServicios();
+  await mostrarFechaTurnos();
+
+  mostrarHoraTurnos(); // seguro
+});
+
+const mostrarFechaTurnos = async () => {
   const response = await fetch('/api/horarios');
   const data = await response.json();
 
@@ -116,8 +123,20 @@ const mostrarFechaTurnos = async() => {
   fechaConteiner.innerHTML = html;
 }
 
+const mostrarServicios = async () => {
+  const response = await fetch('/api/servicios/gestionServcios/getServicios')
+  const data = await response.json()
 
+  const conteinerservicio = document.getElementById('servicio')
+  let html = ""
+  data.forEach((servicio) => {
+    console.log(servicio)
+    html += `<option value="${servicio.duracion}">${servicio.servicio} (${servicio.precio}$)</option>`
+  })
 
-mostrarFechaTurnos(); 
-mostrarHoraTurnos();
+  conteinerservicio.innerHTML = html
+}
+
+mostrarServicios()
+mostrarFechaTurnos();
 SolicitarTurno();

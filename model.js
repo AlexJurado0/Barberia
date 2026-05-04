@@ -115,10 +115,10 @@ const getTurnosDisponibles = (date) => {
 };
 
 
-const guardarServicio = (servicio, precio) => {
+const guardarServicio = (servicio, precio, duracion) => {
   const file = path.join(__dirname, 'db', 'servicios.json');
   let servicios = getServicios();
-  servicios.push({ servicio, precio });
+  servicios.push({ servicio, precio, duracion});
   fs.writeFileSync(file, JSON.stringify(servicios, null, 2), 'utf-8');
 }
 

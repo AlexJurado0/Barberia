@@ -58,15 +58,16 @@ app.get('/panelAdmin/gestionServicios', (req, res) => {
 });
 
 app.post('/api/servicios/gestionServcios/guardarServicio', (req, res) =>{
-  const { servicio, precio } = req.body;
-  console.log("Recibiendo servicio:",servicio, precio);
-  const servicios = modelo.guardarServicio(servicio, precio);
+  const { servicio, precio, duracion } = req.body;
+  console.log("Recibiendo servicio:",servicio, precio, duracion);
+  const servicios = modelo.guardarServicio(servicio, precio, duracion);
   res.status(200).json({ message: "Servicio guardado" });
 })
 
 
 app.get('/api/servicios/gestionServcios/getServicios', (req, res) => {
   const servicios = modelo.getServicios();
+  console.log(servicios)
   res.status(200).json(servicios);
 });
 
@@ -141,7 +142,6 @@ app.post("/api/turnos/solicitar", (req, res) => {
   modelo.solicitarTurno(turno);
   res.status(200).json({ message: "Turno solicitado" });
 });
-
 
 // Usuarios
 

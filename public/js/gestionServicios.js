@@ -6,14 +6,16 @@ const guardarServicio = () => {
   btnGuardar.addEventListener('click', async () => {
     const servicio = document.getElementById('servicio').value;
     const precio = document.getElementById('precio').value;
+    const duracion = document.getElementById('duracion').value
 
-    if (servicio === '' || precio === '') {
+    if (servicio === '' || precio === '' || duracion === '') {
       alert('Por favor, complete todos los campos');
       return;
     }
     const nuevoServicio = {
       servicio: servicio,
-      precio: precio
+      precio: precio,
+      duracion: duracion
     };
     const response = await fetch('/api/servicios/gestionServcios/guardarServicio', {
       method: 'POST',
@@ -42,6 +44,7 @@ const mostrarServicios = async () => {
     <div class="tabla-rows">
       <h3 class="tabla-header">Servicio</h3>
       <h3 class="tabla-header">Precio</h3>
+      <h3 class="tabla-header">Duracion</h3>
       <h3 class="tabla-header">Acción</h3>
     </div>
       `
@@ -52,6 +55,7 @@ const mostrarServicios = async () => {
       <div class="tabla-rows">
       <p class="tabla-item" value="${servicio.servicio}">${servicio.servicio}</p>
       <p class="tabla-item precio" value="${servicio.precio}">${servicio.precio}$</p>
+      <p class="tabla-item precio" value="${servicio.duracion}">${servicio.duracion} min</p>
       <button class="btn-eliminar" value="${servicio.servicio}">Eliminar</button>
       </div>
     `
