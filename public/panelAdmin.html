@@ -11,12 +11,25 @@
 
 <body class="body-Admin">
 
-<!-- Barra superior -->
+<!-- Barra superior y Sidebar -->
   <div class="barra-superior">
+    <button class="menu-toggle" id="menu-toggle"><i class="bi bi-list"></i></button>
     <h2 class="inicio" onclick="window.location.href = '/panelAdmin';">💈 Peluqueria</h2>
-    <button type="submit" class="filtrar-fecha" id="gestion-de-turnos">Gestión de Turnos</button> 
-    <button type="submit" class="filtrar-fecha" id="gestion-de-servicios">Gestión de Servicios</button> 
-    <button class="salir" id="salir">salir</button>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h2>Menú</h2>
+      <button class="close-sidebar" id="close-sidebar"><i class="bi bi-x-lg"></i></button>
+    </div>
+    <div class="sidebar-body">
+      <button class="sidebar-btn" id="gestion-de-turnos"><i class="bi bi-calendar-check"></i> Gestión de Turnos</button> 
+      <button class="sidebar-btn" id="gestion-de-servicios"><i class="bi bi-scissors"></i> Gestión de Servicios</button> 
+    </div>
+    <div class="sidebar-footer">
+      <button class="salir" id="salir"><i class="bi bi-box-arrow-right"></i> Salir</button>
+    </div>
   </div>
   <!-- Filtrar Estado -->
   <div class="filtrar-estados">

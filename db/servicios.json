@@ -3,10 +3,5 @@
     "servicio": "Corte de Pelo",
     "precio": "10000",
     "duracion": "30"
-  },
-  {
-    "servicio": "Aclarar Pelo",
-    "precio": "20000",
-    "duracion": "50"
   }
 ]

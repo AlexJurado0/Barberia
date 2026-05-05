@@ -128,4 +128,17 @@ const getServicios = () => {
   return JSON.parse(data);
 }
 
-module.exports = { getUsuarios, getTurnos, setTurnos, confirmarTurno, cancelarTurno, filtrarTurnos, filtrarTurnosFecha, solicitarTurno, guardarHorariosDisponibles, getHorariosDisponibles, horarioFechaDate, getTurnosDisponibles, guardarServicio, getServicios };
+const eliminarServicio = (servicio) => {
+  const file = path.join(__dirname, 'db', 'servicios.json');
+  let servicios = getServicios();
+  servicios = servicios.filter(s => s.servicio !== servicio);
+  fs.writeFileSync(file, JSON.stringify(servicios, null, 2), 'utf-8');
+}
+
+const eliminarHorario = (horario) => {
+  const file = path.join(__dirname, 'db', 'horarios.json');
+  let horarios = getHorariosDisponibles();
+  horarios = horarios.filter(s => s.date !== horario);
+  fs.writeFileSync(file, JSON.stringify(horarios, null, 2), 'utf-8');
+}
+module.exports = { getUsuarios, getTurnos, setTurnos, confirmarTurno, cancelarTurno, filtrarTurnos, filtrarTurnosFecha, solicitarTurno, guardarHorariosDisponibles, getHorariosDisponibles, horarioFechaDate, getTurnosDisponibles, guardarServicio, getServicios, eliminarServicio, eliminarHorario};

@@ -1,3 +1,22 @@
+const initSidebar = () => {
+  const menuToggle = document.getElementById('menu-toggle');
+  const closeSidebar = document.getElementById('close-sidebar');
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebar-overlay');
+
+  if (menuToggle && closeSidebar && sidebar && overlay) {
+    const toggleMenu = () => {
+      sidebar.classList.toggle('active');
+      overlay.classList.toggle('active');
+    };
+
+    menuToggle.addEventListener('click', toggleMenu);
+    closeSidebar.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', toggleMenu);
+  }
+};
+initSidebar();
+
 const btnGestionarTurnos = document.getElementById('gestion-de-turnos');
 
 btnGestionarTurnos.addEventListener('click', () => {

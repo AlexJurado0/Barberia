@@ -52,6 +52,13 @@ app.post("/api/panelAdmin/gestionTurnos/horarios", (req, res) => {
   res.status(200).json({ message: "Horarios guardados" });
 });
 
+app.delete('/api/servicios/gestionTurnos/eliminarHorario' , (req, res) => {
+  const { horario } = req.body;
+  console.log("Eliminando horario:", horario);
+  const horarios = modelo.eliminarHorario(horario);
+  res.status(200).json({ message: "Horario eliminado" });
+});
+
 
 app.get('/panelAdmin/gestionServicios', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'gestionServicios.html'));
@@ -77,6 +84,14 @@ app.get('/api/servicios/gestionServcios/eliminarServicio/:servicio', (req, res) 
   const servicios = modelo.eliminarServicio(servicio);
   res.status(200).json({ message: "Servicio eliminado" });
 });
+
+app.delete('/api/servicios/gestionServcios/eliminarServicio' , (req, res) => {
+  const { servicio } = req.body;
+  console.log("Eliminando servicio:", servicio);
+  const servicios = modelo.eliminarServicio(servicio);
+  res.status(200).json({ message: "Servicio eliminado" });
+});
+
 //  Panel cliente
 
 app.get('/panelCliente', (req, res) =>{
@@ -93,6 +108,7 @@ app.get('/api/panelCliente/turnos/:date', (req, res) => {
 
 app.get('/api/horarios', (req, res) => {
   const horarios = modelo.getHorariosDisponibles();
+  console.log("Enviando horarios disponibles:", horarios);
   res.status(200).json(horarios);
 });
 

@@ -7,7 +7,10 @@ const SolicitarTurno = () => {
     const hora = document.getElementById("horarios").value;
     const nombre = document.getElementById("nombre").value;
     const telefono = document.getElementById("telefono").value;
-    const servicio = document.getElementById("servicio").value;
+    const servicioSelect = document.getElementById("servicio");
+    const duracion = parseInt(servicioSelect.value);
+    const servicio = servicioSelect.options[servicioSelect.selectedIndex].dataset.nombre;
+
 
     if (!date || !hora || !nombre || !telefono || !servicio) {
       alert("Por favor completá todos los campos");
@@ -20,6 +23,7 @@ const SolicitarTurno = () => {
       nombre,
       telefono,
       servicio,
+      duracion,
       estado: 'Pendiente'
     };
     console.log("Turno solicitado:", data);
@@ -64,6 +68,7 @@ const servicio = document.getElementById("servicio")
 
 const mostrarHoraTurnos = async () => {
   const horarios = document.getElementById("horarios");
+  const duracion = parseInt(servicio.value);
   console.log("Fecha seleccionada:", date.value);
   const response = await fetch(`/api/panelCliente/turnos/${date.value}`, {
     method: 'GET',
@@ -131,10 +136,12 @@ const mostrarServicios = async () => {
   let html = ""
   data.forEach((servicio) => {
     console.log(servicio)
-    html += `<option value="${servicio.duracion}">${servicio.servicio} (${servicio.precio}$)</option>`
+    html += `<option value="${servicio.duracion}" data-nombre="${servicio.servicio} (${servicio.precio}$)"> ${servicio.servicio} (${servicio.precio}$)
+    </option>`;
   })
 
   conteinerservicio.innerHTML = html
+
 }
 
 mostrarServicios()
