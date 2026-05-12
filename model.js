@@ -20,11 +20,13 @@ const getUsuarios = async () => {
 };
 
 //Turnos
-const getTurnos = () => {
-  const file = path.join(__dirname, 'db', 'turnos.json');
-  const data = fs.readFileSync(file, 'utf-8');
-  const turnosData = JSON.parse(data);
-  return turnosData;
+const getTurnos = async() => {
+  const file = await prisma.turno.findMany({
+    include: {
+      servicio: true
+    }
+  })
+  return file;
 }
 
 const setTurnos = async (turno) => {
@@ -39,16 +41,7 @@ const setTurnos = async (turno) => {
       "usuarioId": 1,
       "servicioId": Number(turno.servicio)
     }
-  }
-  )
-  // const file = path.join(__dirname, 'db', 'turnos.json');
-  // const turnos = getTurnos();
-
-  // // Agregar el nuevo turno al array de turnos
-  // turnos.push(turno);
-
-  // // Guardar el nuevo turno en el archivo JSON
-  // fs.writeFileSync(file, JSON.stringify(turnos, null, 2), 'utf-8');
+  })
 }
 
 const solicitarTurno = (turno) => {
@@ -56,53 +49,45 @@ const solicitarTurno = (turno) => {
 }
 
 
-const confirmarTurno = (cliente) => {
-  const file = path.join(__dirname, 'db', 'turnos.json');
-  let turnos = getTurnos();
-
-  console.log(cliente)
-  turnos = turnos.map(turnos => {
-    if (turnos.cliente === cliente) {
-      turnos.estado = 'Confirmado';
+const confirmarTurno = async (cliente) => {
+  await prisma.turno.updateMany({
+    where: {
+      id: Number(cliente)
+    },
+    data: {
+      estado: "Confirmado"
     }
-    return turnos;
   });
-
-  fs.writeFileSync(file, JSON.stringify(turnos, null, 2), 'utf-8');
-}
+};
 
 
-const cancelarTurno = (cliente) => {
-  const file = path.join(__dirname, 'db', 'turnos.json');
-  let turnos = getTurnos();
-
-  turnos = turnos.map(turnos => {
-    if (turnos.cliente === cliente) {
-      turnos.estado = 'Cancelado';
+const cancelarTurno = async (cliente) => {
+  await prisma.turno.updateMany({
+    where: {
+      id: Number(cliente)
+    },
+    data: {
+      estado: "Cancelado"
     }
-    return turnos;
   });
+};
 
-  fs.writeFileSync(file, JSON.stringify(turnos, null, 2), 'utf-8');
-}
-
-const filtrarTurnos = (estado) => {
-  const file = path.join(__dirname, 'db', 'turnos.json');
-  const turnos = getTurnos();
+const filtrarTurnos = async(estado) => {
+  const turnos = await getTurnos();
   const turnosfiltrados = turnos.filter(turno => turno.estado === estado);
   return turnosfiltrados;
 };
 
-const filtrarTurnosFecha = (fecha) => {
-  const file = path.join(__dirname, 'db', 'turnos.json');
-  const turnos = getTurnos();
+const filtrarTurnosFecha = async(fecha) => {
+
+  const turnos = await getTurnos();
   const turnosfiltrados = turnos.filter(turno => turno.date === fecha);
   return turnosfiltrados;
 }
 
 
 // Horarios
-const getHorariosDisponibles = async() => {
+const getHorariosDisponibles = async () => {
   const file = await prisma.horario.findMany()
   console.log(file)
   return file
@@ -117,11 +102,11 @@ const horarioFechaDate = async (date) => {
   return horariosFiltrados;
 };
 
-const guardarHorariosDisponibles = async(date, inicio, fin) => {
+const guardarHorariosDisponibles = async (date, inicio, fin) => {
 
   console.log(date, inicio, fin)
   const file = await prisma.horario.create({
-    data:{
+    data: {
       date: date,
       inicio: inicio,
       fin: fin,
@@ -130,9 +115,9 @@ const guardarHorariosDisponibles = async(date, inicio, fin) => {
   })
 };
 
-const eliminarHorario = async(horario) => {
+const eliminarHorario = async (horario) => {
   const file = await prisma.horario.delete({
-    where:{
+    where: {
       id: Number(horario)
     }
   })
@@ -165,13 +150,13 @@ const guardarServicio = async (servicio, precio, duracion) => {
 
 }
 
-const getServicios = async() => {
+const getServicios = async () => {
   const file = await prisma.servicio.findMany()
   console.log(file)
   return file;
 }
 
-const eliminarServicio = async(servicio) => {
+const eliminarServicio = async (servicio) => {
 
   const file = await prisma.servicio.delete({
     where: {

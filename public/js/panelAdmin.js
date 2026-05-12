@@ -20,13 +20,13 @@ const mostrarTurnos = (turnos) => {
   turnosElement.classList.add("turnos");
   const estadoClass = turnos.estado === 'Pendiente' ? 'pendiente' : turnos.estado === 'Confirmado' ? 'confirmado' : 'cancelado';
   turnosElement.innerHTML = `
-  <div class="hora">${turnos.date} - ${turnos.hora} hs</div>
+  <div class="hora">${turnos.fecha} - ${turnos.hora} hs</div>
     <h3>${turnos.nombre}</h3>
-    <p>${turnos.servicio}</p>
+    <p>${turnos.servicio.servicio}</p>
 
     ${turnos.estado === 'Pendiente'
-      ? `<div class="estado pendiente">${turnos.estado}</div>`
-      : `<div class="estado ${estadoClass}">${turnos.estado}</div>`}
+      ? `<div class="estado pendiente" data-id="${turnos.id}">${turnos.estado}</div>`
+      : `<div class="estado ${estadoClass}" data-id="${turnos.id}">${turnos.estado}</div>`}
     <div class="accion">
     <button class="confirmar">✔ Confirmar</button>
     <button class="cancelar">❌ Cancelar</button>`;
@@ -39,10 +39,10 @@ const mostrarTurnos = (turnos) => {
 
   btnConfirmar.addEventListener('click', async () => {
     if (turnos.estado === 'Cancelado' || turnos.estado === 'Pendiente') {
-      const seguro = confirm("¿Seguro que querés cancelar este turno?");
+      const seguro = confirm("¿Seguro que querés confirmar este turno?");
 
       if (seguro) {
-        const respuesta = await fetch(`/api/turnos/confirmar/${turnos.cliente}`, {
+        const respuesta = await fetch(`/api/turnos/confirmar/${turnos.id}`, {
           method: 'POST'
         });
 
@@ -63,7 +63,7 @@ const mostrarTurnos = (turnos) => {
       const seguro = confirm("¿Seguro que querés cancelar este turno?");
 
       if (seguro) {
-        const respuesta = await fetch(`/api/turnos/cancelar/${turnos.cliente}`, {
+        const respuesta = await fetch(`/api/turnos/cancelar/${turnos.id}`, {
           method: 'POST'
         });
 

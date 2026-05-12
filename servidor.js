@@ -28,11 +28,11 @@ app.get('/panelAdmin', (req, res) => {
 
 // Panel Admin
 
-app.post('/panelAdmin', (req, res) => {
+app.post('/panelAdmin', async(req, res) => {
   const esValido = seguridad.validarUsuario(req.body.user, req.body.pass);
   console.log("Validando usuario: " + req.body.user + " con contraseña: " + req.body.pass);
   if(esValido) {
-    const turnos = modelo.getTurnos();
+    const turnos = await modelo.getTurnos();
     console.log("Usuario válido");
     res.sendFile(path.join(__dirname, 'public', 'panelAdmin.html'));
   } else {
@@ -114,41 +114,35 @@ app.get('/api/horarios', async(req, res) => {
 
 //Turnos
 
-app.get("/api/turnos", (req, res) => {
-  const filePath = path.join(__dirname, "db", "turnos.json");
+app.get("/api/turnos", async(req, res) => {
+  const turnos = await modelo.getTurnos();
 
-  fs.readFile(filePath, "utf8", (err, data) => {
-    if (err) {
-      console.log(err);
-      return res.status(500).json({ error: "No se pudo leer el archivo" });
-    }
-
-    res.json(JSON.parse(data));
-  });
-});
-
-app.post("/api/turnos/confirmar/:cliente", (req, res) => {
-  const turnoId = req.params.cliente;
-  const turnos = modelo.confirmarTurno(turnoId);
-  res.status(200).json({ message: "Turno confirmado" });
-})
-
-app.post("/api/turnos/cancelar/:cliente", (req, res) => {
-  const turnoId = req.params.cliente;
-  const turnos = modelo.cancelarTurno(turnoId);
-  res.status(200).json({ message: "Turno cancelado" });
-})
-
-app.get("/api/turnos/filtrar/:estado", (req, res) => {
-  const estado = req.params.estado;
-  const turnos = modelo.filtrarTurnos(estado);
+  console.log(turnos)
   res.status(200).json(turnos);
 });
 
-app.get("/api/turnos/filtrar/fecha/:fecha", (req, res) => {
+app.post("/api/turnos/confirmar/:cliente", async(req, res) => {
+  const turnoId = req.params.cliente;
+  const turnos = await modelo.confirmarTurno(turnoId);
+  res.status(200).json({ message: "Turno confirmado" });
+})
+
+app.post("/api/turnos/cancelar/:cliente", async(req, res) => {
+  const turnoId = req.params.cliente;
+  const turnos = await modelo.cancelarTurno(turnoId);
+  res.status(200).json({ message: "Turno cancelado" });
+})
+
+app.get("/api/turnos/filtrar/:estado", async(req, res) => {
+  const estado = req.params.estado;
+  const turnos = await modelo.filtrarTurnos(estado);
+  res.status(200).json(turnos);
+});
+
+app.get("/api/turnos/filtrar/fecha/:fecha", async(req, res) => {
   const fecha = req.params.fecha;
   console.log("Filtrando turnos por fecha:", fecha);
-  const turnos = modelo.filtrarTurnosFecha(fecha);
+  const turnos = await modelo.filtrarTurnosFecha(fecha);
   res.status(200).json(turnos);
 });
 
