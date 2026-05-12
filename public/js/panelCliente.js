@@ -9,7 +9,7 @@ const SolicitarTurno = () => {
     const telefono = document.getElementById("telefono").value;
     const servicioSelect = document.getElementById("servicio");
     const duracion = parseInt(servicioSelect.value);
-    const servicio = servicioSelect.options[servicioSelect.selectedIndex].dataset.nombre;
+    const servicio = servicioSelect.options[servicioSelect.selectedIndex].dataset.id;
 
 
     if (!date || !hora || !nombre || !telefono || !servicio) {
@@ -34,6 +34,10 @@ const SolicitarTurno = () => {
       },
       body: JSON.stringify(data)
     });
+
+    if (response.ok) {
+      alert('Turno guardado exitosamente');
+    }
     location.reload();
   });
 }
@@ -63,12 +67,19 @@ function generarSlots(inicio, fin, duracion) {
 }
 
 
-const date = document.getElementById("date");
-const servicio = document.getElementById("servicio")
+
 
 const mostrarHoraTurnos = async () => {
+  const date = document.getElementById("date");
+  const servicio = document.getElementById("servicio")
+
   const horarios = document.getElementById("horarios");
   const duracion = parseInt(servicio.value);
+
+  if (!date || !duracion || isNaN(duracion)) {
+    horarios.innerHTML = "";
+    return;
+  }
   console.log("Fecha seleccionada:", date.value);
   const response = await fetch(`/api/panelCliente/turnos/${date.value}`, {
     method: 'GET',
@@ -104,8 +115,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   await mostrarServicios();
   await mostrarFechaTurnos();
 
-  mostrarHoraTurnos(); // seguro
+  mostrarHoraTurnos();
+  
 });
+
 
 const mostrarFechaTurnos = async () => {
   const response = await fetch('/api/horarios');
@@ -136,14 +149,14 @@ const mostrarServicios = async () => {
   let html = ""
   data.forEach((servicio) => {
     console.log(servicio)
-    html += `<option value="${servicio.duracion}" data-nombre="${servicio.servicio} (${servicio.precio}$)"> ${servicio.servicio} (${servicio.precio}$)
+    html += `<option value="${servicio.duracion}" data-id="${servicio.id}"> ${servicio.servicio} (${servicio.precio}$)
     </option>`;
   })
 
   conteinerservicio.innerHTML = html
 
 }
-
-mostrarServicios()
 mostrarFechaTurnos();
+mostrarServicios()
+
 SolicitarTurno();

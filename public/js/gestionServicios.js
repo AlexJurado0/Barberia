@@ -34,15 +34,19 @@ document.getElementById('guardar-servicio').addEventListener('click', async () =
 document.addEventListener("click", async (e) => {
   if (!e.target.classList.contains("btn-eliminar")) return;
 
-  const servicio = e.target.value;
+  const servicio = e.target.dataset.id;
+  console.log(servicio)
 
   const response = await fetch('/api/servicios/gestionServcios/eliminarServicio', {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ servicio })
+    body: JSON.stringify({
+      servicio
+    })
   });
+
 
   const data = await response.json();
 
@@ -58,7 +62,9 @@ document.addEventListener("click", async (e) => {
 const mostrarServicios = async () => {
   const conteinerSevicios = document.getElementById('tabla-servicios');
   const respuesta = await fetch('/api/servicios/gestionServcios/getServicios');
+  console.log(respuesta)
   const servicios = await respuesta.json();
+  console.log(servicios)
   let html = ` 
     <div class="tabla-rows">
       <h3 class="tabla-header tamaño-text">Servicio</h3>
@@ -75,7 +81,7 @@ const mostrarServicios = async () => {
       <p class="tabla-item" value="${servicio.servicio}">${servicio.servicio}</p>
       <p class="tabla-item precio" value="${servicio.precio}">${servicio.precio}$</p>
       <p class="tabla-item " value="${servicio.duracion}">${servicio.duracion} min</p>
-      <button class="btn-eliminar" value="${servicio.servicio}"">Eliminar</button>
+      <button class="btn-eliminar" data-id="${servicio.id}"">Eliminar</button>
       </div>
     `
   });

@@ -45,17 +45,17 @@ app.get('/panelAdmin/gestionTurnos', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'gestionTurnos.html'));
 });
 
-app.post("/api/panelAdmin/gestionTurnos/horarios", (req, res) => {
+app.post("/api/panelAdmin/gestionTurnos/horarios", async(req, res) => {
   const { date, inicio, fin } = req.body;
   console.log("Recibiendo horarios:", date, inicio, fin);
-  const horarios = modelo.guardarHorariosDisponibles(date, inicio, fin);
+  const horarios = await modelo.guardarHorariosDisponibles(date, inicio, fin);
   res.status(200).json({ message: "Horarios guardados" });
 });
 
-app.delete('/api/servicios/gestionTurnos/eliminarHorario' , (req, res) => {
+app.delete('/api/servicios/gestionTurnos/eliminarHorario' , async(req, res) => {
   const { horario } = req.body;
   console.log("Eliminando horario:", horario);
-  const horarios = modelo.eliminarHorario(horario);
+  const horarios = await modelo.eliminarHorario(horario);
   res.status(200).json({ message: "Horario eliminado" });
 });
 
@@ -64,16 +64,16 @@ app.get('/panelAdmin/gestionServicios', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'gestionServicios.html'));
 });
 
-app.post('/api/servicios/gestionServcios/guardarServicio', (req, res) =>{
+app.post('/api/servicios/gestionServcios/guardarServicio', async(req, res) =>{
   const { servicio, precio, duracion } = req.body;
   console.log("Recibiendo servicio:",servicio, precio, duracion);
-  const servicios = modelo.guardarServicio(servicio, precio, duracion);
+  const servicios = await modelo.guardarServicio(servicio, precio, duracion);
   res.status(200).json({ message: "Servicio guardado" });
 })
 
 
-app.get('/api/servicios/gestionServcios/getServicios', (req, res) => {
-  const servicios = modelo.getServicios();
+app.get('/api/servicios/gestionServcios/getServicios', async(req, res) => {
+  const servicios = await modelo.getServicios();
   console.log(servicios)
   res.status(200).json(servicios);
 });
@@ -85,10 +85,10 @@ app.get('/api/servicios/gestionServcios/eliminarServicio/:servicio', (req, res) 
   res.status(200).json({ message: "Servicio eliminado" });
 });
 
-app.delete('/api/servicios/gestionServcios/eliminarServicio' , (req, res) => {
+app.delete('/api/servicios/gestionServcios/eliminarServicio' , async(req, res) => {
   const { servicio } = req.body;
   console.log("Eliminando servicio:", servicio);
-  const servicios = modelo.eliminarServicio(servicio);
+  const servicios = await modelo.eliminarServicio(servicio);
   res.status(200).json({ message: "Servicio eliminado" });
 });
 
@@ -99,15 +99,15 @@ app.get('/panelCliente', (req, res) =>{
 });
 
 
-app.get('/api/panelCliente/turnos/:date', (req, res) => {
+app.get('/api/panelCliente/turnos/:date', async (req, res) => {
   const date = req.params.date;
-  const turnos = modelo.horarioFechaDate(date);
+  const turnos = await modelo.horarioFechaDate(date);
   
   res.status(200).json(turnos);
 });
 
-app.get('/api/horarios', (req, res) => {
-  const horarios = modelo.getHorariosDisponibles();
+app.get('/api/horarios', async(req, res) => {
+  const horarios = await modelo.getHorariosDisponibles();
   console.log("Enviando horarios disponibles:", horarios);
   res.status(200).json(horarios);
 });

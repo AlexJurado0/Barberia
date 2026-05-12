@@ -26,4 +26,20 @@ class Turno {
   }
 }
 
-module.exports = { Usuario, Turno };
+class horarios {
+  constructor(date, inicio, fin) {
+    this.date = date;
+    this.inicio = inicio;
+    this.fin = fin;
+  }
+}
+
+class Servicio {
+  constructor(servicio, precio, duracion) {
+    this.servicio = servicio;
+    this.precio = precio;
+    this.duracion = duracion;
+  }
+}
+
+module.exports = { Usuario, Turno, horarios, Servicio };

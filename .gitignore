@@ -1,2 +1,4 @@
 node_modules/
 *.log
+/generated/prisma
+hola123.js

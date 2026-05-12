@@ -63,7 +63,7 @@ const mostrarHorarios = async () => {
         <p class="cell">${horario.date}</p>
         <p class="cell">${horario.inicio}</p>
         <p class="cell">${horario.fin}</p>
-        <button class="btn-eliminar" value="${horario.date}">Eliminar</button>
+        <button class="btn-eliminar" data-id="${horario.id}">Eliminar</button>
       </div>`;
   });
 
@@ -73,7 +73,7 @@ const mostrarHorarios = async () => {
 document.addEventListener("click", async (e) => {
   if (!e.target.classList.contains("btn-eliminar")) return;
 
-  const horario = e.target.value;
+  const horario = e.target.dataset.id;
 
   const response = await fetch('/api/servicios/gestionTurnos/eliminarHorario', {
     method: 'DELETE',
